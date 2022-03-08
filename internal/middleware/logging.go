@@ -1,11 +1,12 @@
 package middleware
 
 import (
-	"github.com/prometheus/client_golang/prometheus"
-	"golang.fsrv.services/eventdb/internal/metrics"
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/prometheus/client_golang/prometheus"
+	"golang.fsrv.services/eventdb/internal/metrics"
 )
 
 func Logging(logger *log.Logger) func(next http.Handler) http.Handler {

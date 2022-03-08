@@ -3,8 +3,9 @@ package model
 import (
 	"database/sql/driver"
 	"encoding/json"
-	"gorm.io/datatypes"
 	"time"
+
+	"gorm.io/datatypes"
 
 	"github.com/google/uuid"
 )

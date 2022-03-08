@@ -4,15 +4,16 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"log"
+	"net/http"
+	"os"
+
 	"github.com/gorilla/mux"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"golang.fsrv.services/eventdb/internal/database"
 	"golang.fsrv.services/eventdb/internal/database/model"
 	"golang.fsrv.services/eventdb/internal/handler"
 	"golang.fsrv.services/eventdb/internal/middleware"
-	"log"
-	"net/http"
-	"os"
 )
 
 type Server struct {

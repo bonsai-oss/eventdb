@@ -2,10 +2,11 @@ package handler
 
 import (
 	"encoding/json"
+	"net/http"
+
 	"github.com/gorilla/mux"
 	"golang.fsrv.services/eventdb/internal/database/model"
 	"golang.fsrv.services/jsonstatus"
-	"net/http"
 )
 
 func CreateHandler(workerInput chan<- model.Event, workerOutput <-chan error) http.HandlerFunc {

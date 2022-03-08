@@ -2,13 +2,14 @@ package handler
 
 import (
 	"encoding/json"
+	"log"
+	"net/http"
+	"sort"
+
 	"github.com/gorilla/mux"
 	"golang.fsrv.services/eventdb/internal/database/model"
 	"golang.fsrv.services/jsonstatus"
 	"gorm.io/gorm"
-	"log"
-	"net/http"
-	"sort"
 )
 
 func PollHandler(db *gorm.DB) http.HandlerFunc {
