@@ -1,0 +1,17 @@
+# get contents of event
+GET http://127.0.0.1:8080/api/v1/event/2c6ad722-835d-45d7-a0f9-7e33a81599c5
+Content-Type: application/json
+
+###
+
+# add an event to stream called lol
+POST http://localhost:8080/api/v1/streams/lol
+Content-Type: application/json
+
+{
+  "event_type": "orderCreated",
+  "event_data": {
+    "issuer": "testing",
+    "user": "bob"
+  }
+}
