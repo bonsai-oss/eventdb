@@ -30,7 +30,7 @@ func (s *Server) Initialize() {
 	flag.StringVar(&s.Database.Database, "database.name", "eventdb", "name of the database")
 	flag.StringVar(&s.Database.Username, "database.user", "postgres", "username of the database")
 	flag.StringVar(&s.Database.Password, "database.password", "test123", "password of the database")
-	flag.StringVar(&s.Database.Host, "database.host", "49.12.10.178", "address of the database")
+	flag.StringVar(&s.Database.Host, "database.host", "", "address of the database")
 	flag.StringVar(&s.ListenAddress, "web.listen-address", ":8080", "address listening on")
 	flag.Parse()
 
