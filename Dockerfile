@@ -1,5 +1,5 @@
 FROM golang AS builder
-RUN go get -a
+RUN go get -a ./...
 RUN go build -o eventdb cmd/eventdb/main.go
 
 FROM alpine:edge
