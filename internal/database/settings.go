@@ -46,7 +46,7 @@ func (db *Settings) InitializeDB(logging *log.Logger) (err error) {
 		return err
 	}
 
-	tx := db.Client.Raw("CREATE EXTENSION IF NOT EXISTS 'uuid-ossp';")
+	tx := db.Client.Raw("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";")
 	if tx.Error != nil {
 		logging.Println(err)
 		return err

@@ -17,11 +17,12 @@ import (
 )
 
 type Server struct {
-	Database     database.Settings
-	Instance     http.Server
-	WorkerInput  chan model.Event
-	WorkerOutput chan error
-	Logger       *log.Logger
+	Database      database.Settings
+	Instance      http.Server
+	WorkerInput   chan model.Event
+	WorkerOutput  chan error
+	Logger        *log.Logger
+	ListenAddress string
 }
 
 func (s *Server) Initialize() {
@@ -29,8 +30,22 @@ func (s *Server) Initialize() {
 	flag.StringVar(&s.Database.Database, "database.name", "eventdb", "name of the database")
 	flag.StringVar(&s.Database.Username, "database.user", "postgres", "username of the database")
 	flag.StringVar(&s.Database.Password, "database.password", "test123", "password of the database")
-	flag.StringVar(&s.Database.Host, "database.host", "2001:67c:828:a432:5054:ff:fea9:96e", "address of the database")
+	flag.StringVar(&s.Database.Host, "database.host", "49.12.10.178", "address of the database")
+	flag.StringVar(&s.ListenAddress, "web.listen-address", ":8080", "address listening on")
 	flag.Parse()
+
+	if e := os.Getenv("DATABASE_NAME"); e != "" {
+		s.Database.Database = e
+	}
+	if e := os.Getenv("DATABASE_USER"); e != "" {
+		s.Database.Username = e
+	}
+	if e := os.Getenv("DATABASE_PASSWORD"); e != "" {
+		s.Database.Password = e
+	}
+	if e := os.Getenv("DATABASE_HOST"); e != "" {
+		s.Database.Host = e
+	}
 
 	// initialize custom logger
 	s.Logger = log.New(os.Stdout, "", log.Ltime|log.Lshortfile)
