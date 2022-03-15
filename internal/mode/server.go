@@ -73,7 +73,7 @@ func (s *Server) Run(sig <-chan os.Signal) {
 	apiV1Router.HandleFunc("/streams/{streamName}", handler.PollHandler(s.Database.Client)).Methods(http.MethodGet)
 	apiV1Router.HandleFunc("/event/{eventID}", handler.PollHandler(s.Database.Client)).Methods(http.MethodGet)
 
-	s.Instance = http.Server{Handler: router, Addr: "127.0.0.1:8080"}
+	s.Instance = http.Server{Handler: router, Addr: s.ListenAddress}
 
 	workerDone := make(chan bool)
 	ctx, cancel := context.WithCancel(context.Background())
