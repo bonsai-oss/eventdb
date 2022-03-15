@@ -1,15 +1,13 @@
 FROM golang:bullseye AS builder
 WORKDIR /build
-ENV GO111MODULE=on
-ENV CGO_ENABLE=no
 COPY . .
 RUN go get -u ./...
-RUN go build -o eventdb cmd/eventdb/main.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o eventdb cmd/eventdb/main.go
 
 FROM alpine:edge
-WORKDIR /app
+RUN mkdir /app
+RUN adduser -D user && chown -R user /app
 COPY --from=builder /build/eventdb /app
-RUN ls -lah /app
 EXPOSE 8080
-CMD ["/app/eventdb", "server"]
-
+USER user
+ENTRYPOINT ["/app/eventdb"]
