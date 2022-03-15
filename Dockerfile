@@ -11,5 +11,5 @@ WORKDIR /app
 COPY --from=builder /build/eventdb /app
 RUN ls -lah /app
 EXPOSE 8080
-ENTRYPOINT ["/app/eventdb"]
+CMD ["/app/eventdb", "server"]
 
