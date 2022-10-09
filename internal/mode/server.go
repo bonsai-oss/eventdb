@@ -2,14 +2,15 @@ package mode
 
 import (
 	"context"
-	"flag"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
+	"os/signal"
 
 	"github.com/gorilla/mux"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"gopkg.in/alecthomas/kingpin.v2"
 
 	"github.com/bonsai-oss/eventdb/internal/database"
 	"github.com/bonsai-oss/eventdb/internal/database/model"
@@ -26,27 +27,9 @@ type Server struct {
 	ListenAddress string
 }
 
-func (s *Server) Initialize() {
-	// parse command line parameters
-	flag.StringVar(&s.Database.Database, "database.name", "eventdb", "name of the database")
-	flag.StringVar(&s.Database.Username, "database.user", "postgres", "username of the database")
-	flag.StringVar(&s.Database.Password, "database.password", "test123", "password of the database")
-	flag.StringVar(&s.Database.Host, "database.host", "", "address of the database")
-	flag.StringVar(&s.ListenAddress, "web.listen-address", ":8080", "address listening on")
-	flag.Parse()
-
-	if e := os.Getenv("DATABASE_NAME"); e != "" {
-		s.Database.Database = e
-	}
-	if e := os.Getenv("DATABASE_USER"); e != "" {
-		s.Database.Username = e
-	}
-	if e := os.Getenv("DATABASE_PASSWORD"); e != "" {
-		s.Database.Password = e
-	}
-	if e := os.Getenv("DATABASE_HOST"); e != "" {
-		s.Database.Host = e
-	}
+func (s *Server) Run(c *kingpin.ParseContext) error {
+	sig := make(chan os.Signal, 1)
+	signal.Notify(sig, os.Interrupt)
 
 	// initialize custom logger
 	s.Logger = log.New(os.Stdout, "", log.Ltime|log.Lshortfile)
@@ -58,9 +41,7 @@ func (s *Server) Initialize() {
 
 	s.WorkerInput = make(chan model.Event)
 	s.WorkerOutput = make(chan error)
-}
 
-func (s *Server) Run(sig <-chan os.Signal) {
 	// define global router
 	router := mux.NewRouter()
 	router.Handle("/metrics", promhttp.Handler()).Methods(http.MethodGet)
@@ -70,9 +51,9 @@ func (s *Server) Run(sig <-chan os.Signal) {
 	apiRouter.Use(middleware.Logging(s.Logger))
 
 	apiV1Router := apiRouter.PathPrefix("/v1").Subrouter()
-	apiV1Router.HandleFunc("/streams/{streamName}", handler.CreateHandler(s.WorkerInput, s.WorkerOutput)).Methods(http.MethodPost)
-	apiV1Router.HandleFunc("/streams/{streamName}", handler.PollHandler(s.Database.Client)).Methods(http.MethodGet)
-	apiV1Router.HandleFunc("/event/{eventID}", handler.PollHandler(s.Database.Client)).Methods(http.MethodGet)
+	apiV1Router.Path("/streams/{streamName}").Methods(http.MethodPost).HandlerFunc(handler.CreateHandler(s.WorkerInput, s.WorkerOutput))
+	apiV1Router.Path("/streams/{streamName}").Methods(http.MethodGet).HandlerFunc(handler.PollHandler(s.Database.Client))
+	apiV1Router.Path("/event/{eventID}").Methods(http.MethodGet).HandlerFunc(handler.PollHandler(s.Database.Client))
 
 	s.Instance = http.Server{Handler: router, Addr: s.ListenAddress}
 
@@ -100,6 +81,8 @@ func (s *Server) Run(sig <-chan os.Signal) {
 	cancel()
 	<-workerDone
 	fmt.Println("goodby")
+
+	return nil
 }
 
 func (s *Server) createWorker(ctx context.Context, done chan<- bool) {

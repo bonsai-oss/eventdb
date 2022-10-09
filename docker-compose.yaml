@@ -1,0 +1,25 @@
+---
+version: "3.8"
+services:
+  postgres:
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready", "-d", "eventdb" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test123
+      POSTGRES_DB: eventdb
+  eventdb:
+    build: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    command:
+      - "serve"
+    environment:
+      - DB_HOST=postgres
