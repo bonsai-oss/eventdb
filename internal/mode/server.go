@@ -10,10 +10,11 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"golang.fsrv.services/eventdb/internal/database"
-	"golang.fsrv.services/eventdb/internal/database/model"
-	"golang.fsrv.services/eventdb/internal/handler"
-	"golang.fsrv.services/eventdb/internal/middleware"
+
+	"github.com/bonsai-oss/eventdb/internal/database"
+	"github.com/bonsai-oss/eventdb/internal/database/model"
+	"github.com/bonsai-oss/eventdb/internal/handler"
+	"github.com/bonsai-oss/eventdb/internal/middleware"
 )
 
 type Server struct {

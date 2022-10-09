@@ -5,11 +5,11 @@ import (
 	"strings"
 	"time"
 
-	"gorm.io/gorm/logger"
-
-	"golang.fsrv.services/eventdb/internal/database/model"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
+
+	"github.com/bonsai-oss/eventdb/internal/database/model"
 )
 
 type Settings struct {

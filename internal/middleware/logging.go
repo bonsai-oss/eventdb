@@ -6,7 +6,8 @@ import (
 	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
-	"golang.fsrv.services/eventdb/internal/metrics"
+
+	"github.com/bonsai-oss/eventdb/internal/metrics"
 )
 
 func Logging(logger *log.Logger) func(next http.Handler) http.Handler {

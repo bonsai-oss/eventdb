@@ -1,6 +1,8 @@
 package model
 
-import "time"
+import (
+	"time"
+)
 
 type EventView struct {
 	LastModified time.Time `json:"last_modified"`
