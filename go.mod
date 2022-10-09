@@ -7,12 +7,15 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/gorilla/mux v1.8.0
 	github.com/prometheus/client_golang v1.13.0
+	gopkg.in/alecthomas/kingpin.v2 v2.2.6
 	gorm.io/datatypes v1.0.7
 	gorm.io/driver/postgres v1.4.4
 	gorm.io/gorm v1.24.0
 )
 
 require (
+	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751 // indirect
+	github.com/alecthomas/units v0.0.0-20211218093645-b94a6e3cc137 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
