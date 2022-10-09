@@ -6,10 +6,11 @@ import (
 	"net/http"
 	"sort"
 
+	"github.com/bonsai-oss/jsonstatus"
 	"github.com/gorilla/mux"
-	"golang.fsrv.services/eventdb/internal/database/model"
-	"golang.fsrv.services/jsonstatus"
 	"gorm.io/gorm"
+
+	"github.com/bonsai-oss/eventdb/internal/database/model"
 )
 
 func PollHandler(db *gorm.DB) http.HandlerFunc {
@@ -18,7 +19,7 @@ func PollHandler(db *gorm.DB) http.HandlerFunc {
 		streamName, streamPresent := vars["streamName"]
 		eventID, eventIDPresent := vars["eventID"]
 		if streamPresent && eventIDPresent {
-			jsonstatus.Status{StatusCode: http.StatusInternalServerError, Message: "going to hell!!!!"}.Encode(w)
+			jsonstatus.Status{Code: http.StatusInternalServerError, Message: "going to hell!!!!"}.Encode(w)
 			return
 		}
 		view := model.EventView{}
@@ -49,9 +50,9 @@ func PollHandler(db *gorm.DB) http.HandlerFunc {
 				log.Println(err)
 			}
 		case gorm.ErrRecordNotFound:
-			jsonstatus.Status{StatusCode: http.StatusNotFound, Message: tx.Error.Error()}.Encode(w)
+			jsonstatus.Status{Code: http.StatusNotFound, Message: tx.Error.Error()}.Encode(w)
 		default:
-			jsonstatus.Status{StatusCode: http.StatusInternalServerError, Message: tx.Error.Error()}.Encode(w)
+			jsonstatus.Status{Code: http.StatusInternalServerError, Message: tx.Error.Error()}.Encode(w)
 		}
 	}
 }

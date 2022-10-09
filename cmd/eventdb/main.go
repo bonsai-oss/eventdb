@@ -6,7 +6,7 @@ import (
 	"os"
 	"os/signal"
 
-	"golang.fsrv.services/eventdb/internal/mode"
+	"github.com/bonsai-oss/eventdb/internal/mode"
 )
 
 type Mode interface {

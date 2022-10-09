@@ -4,9 +4,10 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/bonsai-oss/jsonstatus"
 	"github.com/gorilla/mux"
-	"golang.fsrv.services/eventdb/internal/database/model"
-	"golang.fsrv.services/jsonstatus"
+
+	"github.com/bonsai-oss/eventdb/internal/database/model"
 )
 
 func CreateHandler(workerInput chan<- model.Event, workerOutput <-chan error) http.HandlerFunc {
@@ -19,7 +20,7 @@ func CreateHandler(workerInput chan<- model.Event, workerOutput <-chan error) ht
 		decoder.UseNumber()
 		err := decoder.Decode(&transferEvent)
 		if err != nil {
-			jsonstatus.Status{StatusCode: http.StatusUnprocessableEntity, Message: err.Error()}.Encode(w)
+			jsonstatus.Status{Code: http.StatusUnprocessableEntity, Message: err.Error()}.Encode(w)
 			return
 		}
 
@@ -32,7 +33,7 @@ func CreateHandler(workerInput chan<- model.Event, workerOutput <-chan error) ht
 
 		databaseError := <-workerOutput
 		if databaseError != nil {
-			jsonstatus.Status{StatusCode: http.StatusInternalServerError, Message: err.Error()}.Encode(w)
+			jsonstatus.Status{Code: http.StatusInternalServerError, Message: err.Error()}.Encode(w)
 			return
 		}
 		w.WriteHeader(http.StatusCreated)

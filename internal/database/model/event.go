@@ -5,9 +5,8 @@ import (
 	"encoding/json"
 	"time"
 
-	"gorm.io/datatypes"
-
 	"github.com/google/uuid"
+	"gorm.io/datatypes"
 )
 
 type JSONB map[string]interface{}
