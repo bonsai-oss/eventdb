@@ -46,13 +46,14 @@ func (s *Server) Run(_ *kingpin.ParseContext) error {
 		workering.RegisterSet{Name: "web", Worker: s.webListenerBuilder()},
 	)
 
-	workering.StartAll()
-	defer workering.StopAll()
+	if err := workering.StartAll(); err != nil {
+		panic(err)
+	}
 
 	// wait for os interrupt
 	<-sig
 
-	return nil
+	return workering.StopAll()
 }
 
 func (s *Server) webListenerBuilder() workering.WorkerFunction {
