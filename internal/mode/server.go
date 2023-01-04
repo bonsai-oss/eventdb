@@ -75,15 +75,17 @@ func (s *Server) webListenerBuilder() workering.WorkerFunction {
 		httpServer := http.Server{Handler: router, Addr: s.ListenAddress}
 
 		go func() {
-			err := httpServer.ListenAndServe()
-			if err != nil {
+			if err := httpServer.ListenAndServe(); err != nil {
 				s.Logger.Println(err)
 				return
 			}
 		}()
 
 		<-ctx.Done()
-		httpServer.Shutdown(context.Background())
+		if err := httpServer.Shutdown(context.Background()); err != nil {
+			s.Logger.Println(err)
+			return
+		}
 	}
 }
 
