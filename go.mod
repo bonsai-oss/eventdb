@@ -4,9 +4,9 @@ go 1.19
 
 require (
 	github.com/bonsai-oss/jsonstatus v0.1.0
+	github.com/bonsai-oss/mux v1.8.1
 	github.com/bonsai-oss/workering/v2 v2.1.2
 	github.com/google/uuid v1.3.0
-	github.com/gorilla/mux v1.8.0
 	github.com/prometheus/client_golang v1.14.0
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6
 	gorm.io/datatypes v1.1.0

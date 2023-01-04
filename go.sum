@@ -6,6 +6,8 @@ github.com/beorn7/perks v1.0.1 h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM=
 github.com/beorn7/perks v1.0.1/go.mod h1:G2ZrVWU2WbWT9wwq4/hrbKbnv/1ERSJQ0ibhJ6rlkpw=
 github.com/bonsai-oss/jsonstatus v0.1.0 h1:fDk5uSFqbYSXTGVnhHi/7ySxWC2f/ve0Hv7TLX17aBQ=
 github.com/bonsai-oss/jsonstatus v0.1.0/go.mod h1:sIx5rcYmYKPtUIWEF7L4C+fGBk9wa646UPFZChQX340=
+github.com/bonsai-oss/mux v1.8.1 h1:+oCx4bLXEkn6O8Gyse39m2XH7AWWH/u9Rn9vSO3dwYU=
+github.com/bonsai-oss/mux v1.8.1/go.mod h1:yL0pZcrWKtItz0/6Y64ja+qvigVtnUpiOqZRMt8WT/Q=
 github.com/bonsai-oss/workering/v2 v2.1.2 h1:9cOmh1rzRWhUF8lkJ9PEOn7htMl06wA2bSqKiMbRJmw=
 github.com/bonsai-oss/workering/v2 v2.1.2/go.mod h1:jdG46HD9QgLe5EaXUC0rK9Y8CK0Fld6Y49Mbpj/RsuE=
 github.com/cespare/xxhash/v2 v2.2.0 h1:DC2CZ1Ep5Y4k3ZQ899DldepgrayRUGE6BBZ/cd9Cj44=
@@ -27,8 +29,6 @@ github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/
 github.com/google/go-cmp v0.5.9 h1:O2Tfq5qg4qc4AmwVlvv0oLiVAGB7enBSJ2x2DqQFi38=
 github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
 github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
-github.com/gorilla/mux v1.8.0 h1:i40aqfkR1h2SlN9hojwV5ZA91wcXFOvkdNIeFDP5koI=
-github.com/gorilla/mux v1.8.0/go.mod h1:DVbg23sWSpFRCP0SfiEN6jmj59UnW/n46BH5rLB71So=
 github.com/hashicorp/errwrap v1.0.0/go.mod h1:YH+1FKiLXxHSkmPseP+kNlulaMuP3n2brvKWEqk/Jc4=
 github.com/hashicorp/errwrap v1.1.0 h1:OxrOeh75EUXMY8TBjag2fzXGZ40LB6IKw45YeGUDY2I=
 github.com/hashicorp/errwrap v1.1.0/go.mod h1:YH+1FKiLXxHSkmPseP+kNlulaMuP3n2brvKWEqk/Jc4=

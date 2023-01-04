@@ -7,8 +7,8 @@ import (
 	"os"
 	"os/signal"
 
+	"github.com/bonsai-oss/mux"
 	"github.com/bonsai-oss/workering/v2"
-	"github.com/gorilla/mux"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"gopkg.in/alecthomas/kingpin.v2"
 
