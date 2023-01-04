@@ -1,38 +1,23 @@
 package model
 
 import (
-	"database/sql/driver"
-	"encoding/json"
 	"time"
 
 	"github.com/google/uuid"
 	"gorm.io/datatypes"
 )
 
-type JSONB map[string]interface{}
-
-func (j JSONB) Value() (driver.Value, error) {
-	valueString, err := json.Marshal(j)
-	return string(valueString), err
-}
-
-func (j *JSONB) Scan(value interface{}) error {
-	if err := json.Unmarshal(value.([]byte), &j); err != nil {
-		return err
-	}
-	return nil
-}
-
 type Event struct {
-	ID         uuid.UUID `gorm:"default:uuid_generate_v4()" json:"event_id"`
-	CreatedAt  time.Time `json:"created_at"`
-	UpdatedAt  time.Time `json:"-"`
-	DeletedAt  time.Time `json:"-"`
-	StreamName string    `json:"-"`
-	TransferEvent
+	ID         uuid.UUID         `gorm:"default:uuid_generate_v4()" json:"event_id"`
+	CreatedAt  time.Time         `json:"created_at"`
+	UpdatedAt  time.Time         `json:"-"`
+	DeletedAt  time.Time         `json:"-"`
+	StreamName string            `json:"-"`
+	Type       string            `json:"type"`
+	Data       datatypes.JSONMap `json:"data" gorm:"type:jsonb"`
 }
 
 type TransferEvent struct {
-	Type string         `json:"event_type"`
-	Data datatypes.JSON `json:"event_data"`
+	Type string                 `json:"event_type"`
+	Data map[string]interface{} `json:"event_data"`
 }
