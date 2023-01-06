@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/bonsai-oss/jsonstatus"
-	"github.com/gorilla/mux"
+	"github.com/bonsai-oss/mux"
 
 	"github.com/bonsai-oss/eventdb/internal/database/model"
 )
