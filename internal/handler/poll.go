@@ -7,7 +7,7 @@ import (
 	"sort"
 
 	"github.com/bonsai-oss/jsonstatus"
-	"github.com/gorilla/mux"
+	"github.com/bonsai-oss/mux"
 	"gorm.io/gorm"
 
 	"github.com/bonsai-oss/eventdb/internal/database/model"
