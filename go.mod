@@ -11,7 +11,7 @@ require (
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6
 	gorm.io/datatypes v1.1.0
 	gorm.io/driver/postgres v1.4.6
-	gorm.io/gorm v1.24.3
+	gorm.io/gorm v1.24.5
 )
 
 require (
