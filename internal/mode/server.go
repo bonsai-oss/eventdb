@@ -7,10 +7,10 @@ import (
 	"os"
 	"os/signal"
 
+	"github.com/alecthomas/kingpin/v2"
 	"github.com/bonsai-oss/mux"
 	"github.com/bonsai-oss/workering/v2"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"gopkg.in/alecthomas/kingpin.v2"
 
 	"github.com/bonsai-oss/eventdb/internal/database"
 	"github.com/bonsai-oss/eventdb/internal/database/model"
