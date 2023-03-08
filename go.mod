@@ -9,9 +9,9 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/prometheus/client_golang v1.14.0
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6
-	gorm.io/datatypes v1.1.0
+	gorm.io/datatypes v1.1.1
 	gorm.io/driver/postgres v1.4.7
-	gorm.io/gorm v1.24.5
+	gorm.io/gorm v1.24.6
 )
 
 require (
@@ -36,5 +36,5 @@ require (
 	golang.org/x/sys v0.4.0 // indirect
 	golang.org/x/text v0.6.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
-	gorm.io/driver/mysql v1.4.5 // indirect
+	gorm.io/driver/mysql v1.4.7 // indirect
 )
