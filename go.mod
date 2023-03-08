@@ -8,7 +8,7 @@ require (
 	github.com/bonsai-oss/workering/v2 v2.1.2
 	github.com/google/uuid v1.3.0
 	github.com/prometheus/client_golang v1.14.0
-	gopkg.in/alecthomas/kingpin.v2 v2.2.6
+	gopkg.in/alecthomas/kingpin.v2 v2.3.2
 	gorm.io/datatypes v1.1.0
 	gorm.io/driver/postgres v1.4.7
 	gorm.io/gorm v1.24.5
