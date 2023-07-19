@@ -7,7 +7,7 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus"
 
-	"github.com/bonsai-oss/eventdb/internal/metrics"
+	"github.com/bonsai-oss/eventdb/v2/internal/metrics"
 )
 
 func Logging(logger *log.Logger) func(next http.Handler) http.Handler {

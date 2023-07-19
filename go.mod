@@ -1,4 +1,4 @@
-module github.com/bonsai-oss/eventdb
+module github.com/bonsai-oss/eventdb/v2
 
 go 1.19
 

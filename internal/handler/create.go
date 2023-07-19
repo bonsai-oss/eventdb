@@ -7,7 +7,7 @@ import (
 	"github.com/bonsai-oss/jsonstatus"
 	"github.com/bonsai-oss/mux"
 
-	"github.com/bonsai-oss/eventdb/internal/database/model"
+	"github.com/bonsai-oss/eventdb/v2/internal/database/model"
 )
 
 func CreateHandler(workerInput chan<- model.Event, workerOutput <-chan error) http.HandlerFunc {
