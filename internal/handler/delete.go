@@ -20,13 +20,7 @@ func DropHandler(db *gorm.DB) http.HandlerFunc {
 		}
 
 		transactionError := db.Transaction(func(tx *gorm.DB) error {
-			query := tx.Delete(&model.Event{}, "stream_name = ?", streamName)
-
-			if query.Error != nil {
-				return query.Error
-			}
-
-			return nil
+			return tx.Delete(&model.Event{}, "stream_name = ?", streamName).Error
 		})
 
 		if transactionError != nil {
