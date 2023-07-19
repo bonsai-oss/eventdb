@@ -36,8 +36,8 @@ X-Event-Type: orderCreated
 
 ###
 
-# clear stream lol
-POST http://localhost:8080/api/v1/streams/lol/clear
+# drop stream lol
+POST http://localhost:8080/api/v1/streams/lol/drop
 
 ###
 

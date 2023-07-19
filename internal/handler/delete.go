@@ -10,7 +10,7 @@ import (
 	"github.com/bonsai-oss/eventdb/internal/database/model"
 )
 
-func ClearHandler(db *gorm.DB) http.HandlerFunc {
+func DropHandler(db *gorm.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		vars := mux.Vars(r)
 		streamName, streamPresent := vars["streamName"]
