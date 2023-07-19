@@ -68,6 +68,7 @@ func (s *Server) webListenerBuilder() workering.WorkerFunction {
 		apiRouter.Use(middleware.Logging(s.Logger))
 
 		apiV1Router := apiRouter.PathPrefix("/v1").Subrouter()
+		apiV1Router.Path("/streams/{streamName}/clear").Methods(http.MethodPost).HandlerFunc(handler.ClearHandler(s.Database.Client))
 		apiV1Router.Path("/streams/{streamName}").Methods(http.MethodPost).HandlerFunc(handler.CreateHandler(s.WorkerInput, s.WorkerOutput))
 		apiV1Router.Path("/streams/{streamName}").Methods(http.MethodGet).HandlerFunc(handler.PollHandler(s.Database.Client))
 		apiV1Router.Path("/event/{eventID}").Methods(http.MethodGet).HandlerFunc(handler.PollHandler(s.Database.Client))
