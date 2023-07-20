@@ -69,6 +69,7 @@ func (s *Server) webListenerBuilder() workering.WorkerFunction {
 
 		apiV1Router := apiRouter.PathPrefix("/v1").Subrouter()
 		apiV1Router.Path("/streams/{streamName}/drop").Methods(http.MethodPost).HandlerFunc(handler.DropHandler(s.Database.Client))
+		apiV1Router.Path("/streams/{streamName}/cloudevents").Methods(http.MethodPost).HandlerFunc(handler.CloudEventsCreateHandler(s.WorkerInput, s.WorkerOutput))
 		apiV1Router.Path("/streams/{streamName}").Methods(http.MethodPost).HandlerFunc(handler.CreateHandler(s.WorkerInput, s.WorkerOutput))
 		apiV1Router.Path("/streams/{streamName}").Methods(http.MethodGet).HandlerFunc(handler.PollHandler(s.Database.Client))
 		apiV1Router.Path("/event/{eventID}").Methods(http.MethodGet).HandlerFunc(handler.PollHandler(s.Database.Client))
