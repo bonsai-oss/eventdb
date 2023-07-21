@@ -12,10 +12,10 @@ import (
 	"github.com/bonsai-oss/workering/v2"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 
-	"github.com/bonsai-oss/eventdb/internal/database"
-	"github.com/bonsai-oss/eventdb/internal/database/model"
-	"github.com/bonsai-oss/eventdb/internal/handler"
-	"github.com/bonsai-oss/eventdb/internal/middleware"
+	"github.com/bonsai-oss/eventdb/v2/internal/database"
+	"github.com/bonsai-oss/eventdb/v2/internal/database/model"
+	"github.com/bonsai-oss/eventdb/v2/internal/handler"
+	"github.com/bonsai-oss/eventdb/v2/internal/middleware"
 )
 
 type Server struct {
@@ -68,6 +68,8 @@ func (s *Server) webListenerBuilder() workering.WorkerFunction {
 		apiRouter.Use(middleware.Logging(s.Logger))
 
 		apiV1Router := apiRouter.PathPrefix("/v1").Subrouter()
+		apiV1Router.Path("/streams/{streamName}/drop").Methods(http.MethodPost).HandlerFunc(handler.DropHandler(s.Database.Client))
+		apiV1Router.Path("/streams/{streamName}/cloudevents").Methods(http.MethodPost).HandlerFunc(handler.CloudEventsCreateHandler(s.WorkerInput, s.WorkerOutput))
 		apiV1Router.Path("/streams/{streamName}").Methods(http.MethodPost).HandlerFunc(handler.CreateHandler(s.WorkerInput, s.WorkerOutput))
 		apiV1Router.Path("/streams/{streamName}").Methods(http.MethodGet).HandlerFunc(handler.PollHandler(s.Database.Client))
 		apiV1Router.Path("/event/{eventID}").Methods(http.MethodGet).HandlerFunc(handler.PollHandler(s.Database.Client))

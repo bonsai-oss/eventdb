@@ -9,7 +9,7 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 
-	"github.com/bonsai-oss/eventdb/internal/database/model"
+	"github.com/bonsai-oss/eventdb/v2/internal/database/model"
 )
 
 type Settings struct {
