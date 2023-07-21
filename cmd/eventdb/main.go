@@ -5,7 +5,7 @@ import (
 
 	"github.com/alecthomas/kingpin/v2"
 
-	"github.com/bonsai-oss/eventdb/internal/mode"
+	"github.com/bonsai-oss/eventdb/v2/internal/mode"
 )
 
 func main() {

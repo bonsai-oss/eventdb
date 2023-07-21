@@ -10,7 +10,7 @@ import (
 	"github.com/bonsai-oss/mux"
 	"gorm.io/gorm"
 
-	"github.com/bonsai-oss/eventdb/internal/database/model"
+	"github.com/bonsai-oss/eventdb/v2/internal/database/model"
 )
 
 func PollHandler(db *gorm.DB) http.HandlerFunc {
