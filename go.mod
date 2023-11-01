@@ -6,7 +6,7 @@ require (
 	github.com/alecthomas/kingpin/v2 v2.3.2
 	github.com/bonsai-oss/jsonstatus v0.1.0
 	github.com/bonsai-oss/mux v1.8.1
-	github.com/bonsai-oss/workering/v2 v2.1.3
+	github.com/bonsai-oss/workering/v2 v2.1.4
 	github.com/cloudevents/sdk-go/v2 v2.14.0
 	github.com/google/uuid v1.4.0
 	github.com/prometheus/client_golang v1.17.0
