@@ -7,12 +7,12 @@ require (
 	github.com/bonsai-oss/jsonstatus v0.1.0
 	github.com/bonsai-oss/mux v1.8.1
 	github.com/bonsai-oss/workering/v2 v2.1.5
-	github.com/cloudevents/sdk-go/v2 v2.14.0
-	github.com/google/uuid v1.5.0
+	github.com/cloudevents/sdk-go/v2 v2.15.0
+	github.com/google/uuid v1.6.0
 	github.com/prometheus/client_golang v1.18.0
 	gorm.io/datatypes v1.2.0
 	gorm.io/driver/postgres v1.5.4
-	gorm.io/gorm v1.25.5
+	gorm.io/gorm v1.25.6
 )
 
 require (
